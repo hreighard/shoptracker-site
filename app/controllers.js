@@ -1,20 +1,23 @@
 
 var shopControllers=angular.module('shopControllers', []);
 
-shopControllers.controller('ShopLog', ['$scope', 'shopService',
-  function($scope, shopService) {
+shopTracker.controller('shopLog',function($scope, $http) {
     $scope.members;
-    $scope.ststus;
-    getMembers();
+    $scope.status;
+    $http.get("http://shoptracker-api.azurewebsites.net")
+    .success(function(response) {
+      $scope.members = response; 
+    });
+    //getMembers();
     
-    function getMembers(){
-       shopService.getMembers()().success(function (members){
+    /*function getMembers(){
+       shopService.getMembers().success(function (members){
          $scope.members=members;
        })
        .error(function (error) {
          $scope.status='Unable to load member data: ' + error.message;
        });
-    };
+    }
     
     $scope.updateMember = function (id){
       var member;
@@ -49,5 +52,5 @@ shopControllers.controller('ShopLog', ['$scope', 'shopService',
         .error(function (error){
           $scope.status ='Failed to insert member: ' + error.message;
         });
-    };
+    };*/
 }]);

@@ -1,9 +1,4 @@
 'use strict';
 
 // Declare app level module which depends on views, and components
-var shopTracker = angular.module('shopTracker', [
-  'ngRoute',
-  'shopControllers',
-  'shopService',
-]).
-
+var shopTracker = angular.module('shopTracker', []);
