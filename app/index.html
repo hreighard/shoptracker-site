@@ -2,7 +2,7 @@
 <!--[if lt IE 7]>      <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html lang="en" ng-app="shopTracker"> <!--<![endif]-->
+<!--[if gt IE 8]><!--> <html lang="en" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -26,17 +26,20 @@
   <script src="services.js"></script>
   
 </head>
-<body >
+<body ng-app="shopTracker" ng-controller="MainControl">
 
   <!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
   <![endif]-->
 
 
-  <div ng-controller="ShopLogController"> show the log here
+  <div ng-repeat="x in members"> show the log here: 
+  <ul>
+  <li> {{x.name}}
+  </li>
+  </ul>
 
-  <p>{{members.id}}</p>
-  <p>{{members.name}}</p>
+  
   </div>
 
   <!-- In production use:
