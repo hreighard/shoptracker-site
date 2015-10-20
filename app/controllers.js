@@ -1,18 +1,15 @@
 
 var shopControllers=angular.module('shopControllers', []);
 
-shopTracker.controller('shopLog',function($scope, $http) {
-    $scope.members;
-    $scope.status;
-    $http.get("http://shoptracker-api.azurewebsites.net")
-    .success(function(response) {
-      $scope.members = response; 
-    });
-    //getMembers();
-    
-    /*function getMembers(){
-       shopService.getMembers().success(function (members){
-         $scope.members=members;
+shopTracker.controller('ShopLogController', ['$scope', 'Members',
+  function($scope, Members) {
+    $scope.members = Members.query();
+  }]);
+   /* 
+    $scope.getMembers = function(){
+      shopFactory.getMembers()()
+        .success(function (members){
+          $scope.members=members;
        })
        .error(function (error) {
          $scope.status='Unable to load member data: ' + error.message;
@@ -28,7 +25,7 @@ shopTracker.controller('shopLog',function($scope, $http) {
           break;
         }
       }
-      shopService.updateMember(member).success(function () {
+      shopFactory.updateMember(member).success(function () {
         $scope.status = 'Updated member.';
       })
       .error(function (error) {
@@ -44,7 +41,7 @@ shopTracker.controller('shopLog',function($scope, $http) {
         name: 'Harrison Reighard'
         active: 0
       };
-      shopService.insertMember(member)
+      shopFactory.insertMember(member)
         .success(function () {
           $scope.status='Inserted member';
           $scope.members.push(member);
@@ -52,5 +49,6 @@ shopTracker.controller('shopLog',function($scope, $http) {
         .error(function (error){
           $scope.status ='Failed to insert member: ' + error.message;
         });
-    };*/
-}]);
+    };
+    $scope.getMembers();*/
+//}]);
