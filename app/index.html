@@ -39,15 +39,26 @@
   </div>
 
   <div ng-controller="MemberControl">
-  <div  ng-repeat="x in members"> show the log here: 
-  <ul>
-  <li> {{x.name}}
-  <p> {{x.id}}
-  </li>
-  </ul>
+    <div  ng-repeat="x in members"> 
+    <ul>
+      <li> Name: {{x.name}}
+      <li> id: {{x.id}}
+      <li> Has Keys: {{x.hasKeys ? 'True':'False'}}
+      </li>
+      </li>
+      </li>
+    </ul>
+     </div>
   </div>
   
-  </div>
+  <div ng-controller="MemberPostControl">
+    <p>Name: <input type="text" name="name" ng-model="name" required /></p>
+    <p>Has Keys?: <input type="radio" name="haskeys" value="TRUE" ng-model="hasKeys"/>True<input type="radio" name="haskeys" value="FALSE" ng-model="hasKeys"/>False</</p>
+    <p>Active?: <input type="radio" name="active" value="TRUE" ng-model="active"/>True<input type="radio" name="active" value="FALSE" ng-model="active"/>False</p>
+    <button ng-click="SendData()">Submit</button>
+    <hr />
+    {{postResponse}}
+</div>
 
   <!-- In production use:
   <script src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>

@@ -22,6 +22,19 @@ angular.module('shopTracker', [])
     console.err('ERR', err);
   })
 })
+.controller('MemberPostControl', function($scope, $http){
+  var data = {
+    name: $scope.name,
+    hasKeys: $scope.keys,
+    active: $scope.active,
+  }
+    
+	$http.post('https://shoptracker-api.azurewebsites.net/members', data).then(function(resp){
+		$scope.postResponse=resp.data;
+	}, function(err){
+		console.error('ERR', err);
+	})
+})
   /*'shopControllers', 
   'shopServices', 
   'ngRoute',
