@@ -49,15 +49,21 @@
       </li>
     </ul>
      </div>
-  </div>
+  </div> 
   
   <div ng-controller="MemberPostControl">
     <p>Name: <input type="text" name="name" ng-model="name" required /></p>
-    <p>Has Keys?: <input type="radio" name="haskeys" value="TRUE" ng-model="hasKeys"/>True<input type="radio" name="haskeys" value="FALSE" ng-model="hasKeys"/>False</</p>
-    <p>Active?: <input type="radio" name="active" value="TRUE" ng-model="active"/>True<input type="radio" name="active" value="FALSE" ng-model="active"/>False</p>
+    <p>Has Keys: <input type="text" name="keys" ng-model="keys" required /></p>
+    <p>Is Active: <input type="text" name="active" ng-model="active" required /></p>
+
     <button ng-click="SendData()">Submit</button>
     <hr />
     {{postResponse}}
+    
+</div>
+<div ng-controller="MemberDeleteControl">
+<p>Delete Member: <input type="number" name="id" ng-model="id" required/></p>
+<button ng-click="SendData()">Submit</button>
 </div>
 
   <!-- In production use:

@@ -24,16 +24,24 @@ angular.module('shopTracker', [])
 })
 .controller('MemberPostControl', function($scope, $http){
   var data = {
-    name: $scope.name,
-    hasKeys: $scope.keys,
-    active: $scope.active,
+    name: =$scope.name,//$scope.name,
+    hasKeys: $scope.keys,//$scope.keys,
+    active: $scope.active //$scope.active,
   }
     
 	$http.post('https://shoptracker-api.azurewebsites.net/members', data).then(function(resp){
 		$scope.postResponse=resp.data;
-	}, function(err){
-		console.error('ERR', err);
+	}, function(resp){
+		alert(resp);
 	})
+})
+.controller('MemberDeleteControl', function($scope, $http){
+  $scope.id;
+  $http.delete('https://shoptracker-api.azurewebsites.net/members/' + $scope.id).then(function(resp){
+    $scope.delResponse=resp.data;
+  }, function(err){
+    alert(err);
+  })
 })
   /*'shopControllers', 
   'shopServices', 
