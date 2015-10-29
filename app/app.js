@@ -23,25 +23,29 @@ angular.module('shopTracker', [])
   })
 })
 .controller('MemberPostControl', function($scope, $http){
-  var data = {
-    name: =$scope.name,//$scope.name,
-    hasKeys: $scope.keys,//$scope.keys,
-    active: $scope.active //$scope.active,
-  }
-    
+  $scope.user = {};
+  var data = JSON.stringify({
+    name: $scope.user.name,//$scope.name,
+    hasKeys: $scope.user.keys,//$scope.keys,
+    active: $scope.user.active //$scope.active,
+  });
+  $scope.SendPost=function(){
 	$http.post('https://shoptracker-api.azurewebsites.net/members', data).then(function(resp){
 		$scope.postResponse=resp.data;
 	}, function(resp){
-		alert(resp);
+		console.err(resp);
 	})
+  }
 })
 .controller('MemberDeleteControl', function($scope, $http){
   $scope.id;
+  $scope.SendDel=function(){
   $http.delete('https://shoptracker-api.azurewebsites.net/members/' + $scope.id).then(function(resp){
     $scope.delResponse=resp.data;
   }, function(err){
     alert(err);
   })
+  }
 })
   /*'shopControllers', 
   'shopServices', 
