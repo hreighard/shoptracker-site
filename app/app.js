@@ -29,6 +29,7 @@ angular.module('shopTracker', [])
     hasKeys: $scope.user.keys,//$scope.keys,
     active: $scope.user.active //$scope.active,
   });
+  //iogjaspodigksjgs
   $scope.SendPost=function(){
 	$http.post('https://shoptracker-api.azurewebsites.net/members', data).then(function(resp){
 		$scope.postResponse=resp.data;
