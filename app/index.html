@@ -24,11 +24,96 @@
   <script src="app.js"></script>
   <!--<script src="controllers.js"></script>
   <script src="services.js"></script>-->
+    <!-- In production use:
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>
+  -->
+  
+  
+	<title ng-bind="pageTitle" class="ng-binding">Home | Formula Electric</title>
+
+    <!-- set up the mobile viewport -->
+    <meta name="viewport" content="width=device-width, user-scalable=no">
+
+    <!-- font awesome from BootstrapCDN -->
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.1/css/font-awesome.min.css" rel="stylesheet">
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <link rel="stylesheet" src="//normalize-css.googlecode.com/svn/trunk/normalize.css" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
   
 </head>
 <body >
 
-  <!--[if lt IE 7]>
+    <div class="container">
+      <h1>Design. Build. Race. Repeat.</h1>
+      <p>The Formula Electric design team at Missouri S&amp;T is a group of engineering students that build a scale, formula-style, all-electric racecar every year.</p>
+    </div>
+  </section>
+
+  <section class="subheading">
+    <div class="list">
+      <div class="container">
+        <div class="row">
+          <a href="http://www.facebook.com/FormulaSAEElectric" target="_blank"><div class="action span4"><i class="fa fa-2x fa-facebook-square"></i>Follow Us</div></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="news">
+    <div class="header">
+      <div class="container">
+        <h2>Who We Are</h2>
+      </div>
+    </div>
+
+    <div class="body">
+      <div class="container">
+        <div class="posts">
+          <div class="content">
+            <h3>A New Team For A New Series</h3>
+            <p>
+              We are the Formula Electric design team at <a href="http://mst.edu">Missouri University of Science and Technology</a> in Rolla, Missouri. Participating in the Formula SAE Electric series of racing, we design, build, and race a scale formula-style car each year. While Formula SAE has been around for a long time, the electric series has only recently come to the U.S. In 2012 a group of students got together to form an entirely new team to race in the new series, and Formula Electric was born.
+            </p>
+          </div>
+          </div>
+        </div>
+      </div>
+    </section></div>
+  
+</div>
+
+        </div>
+  
+<div class="container">
+  <h2>Image</h2>
+  <img class="img-responsive" src="Images/GrassCar.jpg" alt="Car in the Grass" width="500" height="344"> 
+</div>
+
+<div class="container" ng-controller="MemberControl">
+  <h2>Table</h2>
+  <table class="table table-condensed">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>UserName</th>
+		<th>BluetoothDeviceID</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="x in members">
+        <td>{{x.id}}</td>
+        <td>{{x.name}}</td>
+		<td>{{x.hasKeys ? 'True':'False'}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
   <![endif]-->
   <div ng-controller="chDeviceControl">
@@ -61,9 +146,17 @@
 <button ng-click="SendDel()">Submit</button>
 </div>
 
-  <!-- In production use:
-  <script src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>
-  -->
-  
+        <footer class="footer">
+          <div class="footer-inner">
+            <div class="container">
+              <div class="row">
+                <div class="span2"><img class="logo" src="Images/ActionCar.jpg"></div>
+              </div>
+            </div>
+          </div>
+        </footer>
+      </div>
+    </div>
+
 </body>
 </html>
