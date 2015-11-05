@@ -1,12 +1,6 @@
-// Declare app level module which depends on views, and components
+
 angular.module('shopTracker', [])
-.controller('MemberControl', function($scope, $http){
-	$http.get('https://shoptracker-api.azurewebsites.net/members').then(function(resp){
-		$scope.members=resp.data;
-	}, function(err){
-		console.log('ERR', err);
-	})
-})
+//Device Controllers
 .controller('chDeviceControl', function($scope, $http){
   $http.get('https://shoptracker-api.azurewebsites.net/checkin-devices').then(function(resp){
     $scope.chdevice=resp.data;
@@ -15,6 +9,7 @@ angular.module('shopTracker', [])
   })
 })
 
+//Subgroup controllers
 .controller('SubgroupControl', function($scope, $http){
   $http.get('https://shoptracker-api.azurewebsites.net/subgroups').then(function(resp){
     $scope.subgroups=resp.data;
@@ -22,12 +17,44 @@ angular.module('shopTracker', [])
     console.log('ERR', err);
   })
 })
+.controller('MemberSubgroupControl', function($scope, $http){
+  $scope.user = {};
+  $http.get('https://shoptracker-api.azurewebsites.net/members/'+ $scope.user.id + '/subgroups')
+  .then(function(resp){
+    $scope.memberSubgroups=resp.data;
+  }, function(err){
+    console.log('ERR', err);
+  })
+})
+//Member Controllers
+.controller('MemberControl', function($scope, $http){
+	$http.get('https://shoptracker-api.azurewebsites.net/members').then(function(resp){
+		$scope.members=resp.data;
+	}, function(err){
+		console.log('ERR', err);
+	})
+})
 .controller('MemberPostControl', function($scope, $http){
   $scope.user = {};
   $scope.SendPost= function() {
   $http({
     method : 'POST',
     url : 'https://shoptracker-api.azurewebsites.net/members',
+    data : $scope.user
+  })
+  .then(function(resp){
+		$scope.postResponse=resp.data;
+	}, function(resp){
+		console.log(resp);
+	})
+  }
+})
+.controller('MemberUpdateControl', function($scope, $http){
+  $scope.user = {};
+  $scope.SendPut= function() {
+  $http({
+    method : 'PUT',
+    url : 'https://shoptracker-api.azurewebsites.net/members/' + $scope.user.id,
     data : $scope.user
   })
   .then(function(resp){
@@ -47,19 +74,3 @@ angular.module('shopTracker', [])
   })
   }
 })
-  /*'shopControllers', 
-  'shopServices', 
-  'ngRoute',
-  'ngResource'*/
-
-  /*
-shopTracker.config(['$routeProvider', function($routeProvider) {
-  $routeProvider.when('/', {
-    controller: 'shopController',
-    templateUrl: '/app/views/view1.html'
-  })
-  .otherwise({ redirectTo: '/'});
-  
-}]);
-
-*/
