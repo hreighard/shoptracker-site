@@ -137,17 +137,49 @@ angular.module('shopTracker', [])
 })
 .controller('MemberSubgroupPost', function($scope, $http){
   $scope.user = {};
-  $scope.SendSubgroupPost= function() {
+  $scope.subgroup = {};
+  $scope.SendMSubgroupPost= function() {
   $http({
     method : 'POST',
     url : memberurl + $scope.user.id +'/subgroups',
-    data : $scope.user
+    data : $scope.subgroup
   })
   .then(function(resp){
 		$scope.postResponse=resp.data;
 	}, function(resp){
 		console.log(resp);
 	})
+  }
+})
+.controller('MemberSubgroupUpdateControl', function($scope, $http){
+  $scope.user = {};
+  $scope.subgroup = {};
+  $scope.UpdateMSubgroup= function() {
+  $http({
+    method : 'PUT',
+    url : memberurl + $scope.user.id + '/subgroups/' + $scope.subgroup.id,
+    data : $scope.subgroup
+  })
+  .then(function(resp){
+		$scope.postResponse=resp.data;
+	}, function(resp){
+		console.log(resp);
+	})
+  }
+})
+.controller('MSubgroupDeleteControl', function($scope, $http){
+  $scope.user = {};
+  $scope.subgroup = {};
+  $scope.SendMSubgroupDel=function(){
+  $http({
+    method : 'DELETE',
+    url : memberurl + $scope.user.id + '/subgroups/' + $scope.subgroup.id
+  })
+  .then(function(resp){
+    $scope.delResponse=resp.data;
+  }, function(err){
+    console.log(err);
+  })
   }
 })
 
@@ -315,6 +347,7 @@ angular.module('shopTracker', [])
 
 //returns whether or not the shop is open based on whether a member whose
 //hasKeys property is true is checked in at the specified device
+//Depreciated use API function
 .controller('ShopStatusControl', function($scope, $http){
   $scope.device ={};
   //$scope.IsShopOpen= function() {
@@ -333,6 +366,7 @@ angular.module('shopTracker', [])
 //returns a list of all members that are checked in at the specified checkin device
 .controller('AttendanceControl', function($scope, $http){
   $scope.device ={};
+  $scope.getAttendance = function(){
   $http({
     method : 'GET',
     url : chDurl + $scope.device.id + '/whoisthere'
@@ -342,10 +376,12 @@ angular.module('shopTracker', [])
 	}, function(resp){
 		console.log(resp);
 	})
+  }
 })
 
 .controller('TimecardControl', function($scope, $http){
   $scope.user ={};
+  //$scope.getTimecard = function(){
   $http({
     method : 'GET',
     url : memberurl + $scope.user.id + '/timecard'
@@ -355,4 +391,5 @@ angular.module('shopTracker', [])
 	}, function(resp){
 		console.log(resp);
 	})
+  //}
 })

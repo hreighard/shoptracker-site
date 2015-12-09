@@ -57,9 +57,10 @@
 		<li class="active"><a data-toggle="pill" href="#home">Home</a></li>
 		<li><a data-toggle="pill" href="#menu1">Members</a></li>
 		<li><a data-toggle="pill" href="#menu2">Devices</a></li>
-		<li><a data-toggle="pill" href="#menu3">Time Card</a></li>
-		<li><a data-toggle="pill" href="#menu4">Sub Groups</a></li>
+		<li><a data-toggle="pill" href="#menu3">Subgroups</a></li>
+		<li><a data-toggle="pill" href="#menu4">Timecard</a></li>
 		<li><a data-toggle="pill" href="#menu5">Check In</a></li>
+    <li><a data-toggle="pill" href="#menu6">Check Out</a></li>
 	  </ul>
 	  
 	  <div class="tab-content">
@@ -72,97 +73,208 @@
             <p>
               We are the Formula Electric design team at <a href="http://mst.edu">Missouri University of Science and Technology</a> in Rolla, Missouri. Participating in the Formula SAE Electric series of racing, we design, build, and race a scale formula-style car each year. While Formula SAE has been around for a long time, the electric series has only recently come to the U.S. In 2012 a group of students got together to form an entirely new team to race in the new series, and Formula Electric was born.
             </p>
-		</div>
+		</div>                                                     
 		<div id="menu1" class="tab-pane fade">
 		  <h3>Members</h3>
-		  <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-		</div>
+      <div class="container"> 
+        <div class="container" ng-controller="MemberControl">
+        <table class="table table-condensed">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>UserName</th>
+              <th>Has Keys</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="x in members">
+              <td>{{x.id}}</td>
+              <td>{{x.name}}</td>
+              <td>{{x.hasKeys ? 'True':'False'}}</td>
+            </tr>
+          </tbody>
+        </table>
+        
+      </div>
+      <br>
+      <h3>Add Member</h3>
+        <div ng-controller="MemberPostControl" >
+          <form name="AddMemberForm" ng-submit="SendMemberPost()">
+            <p>Name: <input type="text" id="name" name="name" ng-model="user.name" required /></p>
+            <p>Has Keys: <input type="text" id="keys" name="keys" ng-model="user.hasKeys" required /></p>
+            <p>Is Active: <input type="text" id="active" name="active" ng-model="user.active" required /></p>
+            <p>Subgroups: <input type="text" id="Subgroups" name="subgroups" ng-model="user.subgroups"  /></p>
+            <button type="submit" class="btn btn-primary">Create New</button>
+          </form>
+        </div>
+        <br>
+        <h3>Update Member</h3>
+        <div>
+        <form name="UpdateMemberForm" ng-submit="UpdateMember()">
+            <p>ID: <input type="text" id="id" name="id" ng-model="user.id" required /></p>
+            <p>Name: <input type="text" id="name" name="name" ng-model="user.name" required /></p>
+            <p>Has Keys: <input type="text" id="keys" name="keys" ng-model="user.hasKeys" required /></p>
+            <p>Is Active: <input type="text" id="active" name="active" ng-model="user.active" required /></p>
+            <p>Subgroups: <input type="text" id="Subgroups" name="subgroups" ng-model="user.subgroups"  /></p>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+        </div>
+        <br>
+        <h3>Delete Member</h3>
+        <div ng-controller="MemberDeleteControl">
+          <p>Delete Member: <input type="number" name="id" ng-model="user.id" required/></p>
+        <button ng-click="SendMemberDel()">Submit</button>
+        </div>
+      </div>
+
+      </div>
 		<div id="menu2" class="tab-pane fade">
-		  <h3>Devices</h3>
-		  <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
-		</div>
+		  <h3>Checkin Devices</h3>
+      <div class="container"> 
+        <div ng-controller="chDeviceControl">
+        <h2>Checkin Devices</h2>
+        <table class="table table-condensed">
+          <thead>
+            <tr>
+              <th>Device Name</th>
+              <th>Device Location</th>
+              <th>Device Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="x in chdevice">
+              <td>{{x.name}}</td>
+              <td>{{x.location}}</td>
+              <td>{{x.description}}</td>
+            </tr>
+          </tbody>
+        </table>
+        </div>
+        <h3>Add Checkin Device</h3>
+        <div ng-controller="chDevicePostControl" >
+          <form name="AddChDeviceForm" ng-submit="SendChDevicePost()">
+            <p>Name: <input type="text" id="name" name="name" ng-model="device.name" required /></p>
+            <p>Description: <input type="text" id="description" name="description" ng-model="device.description" /></p>
+            <p>Location: <input type="text" id="location" name="location" ng-model="device.location" required /></p>
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
+        </div>
+        <h3>Update Checkin Device</h3>
+        <div ng-controller="chDeviceUpdateControl">
+        <form name="UpdateChDeviceForm" ng-submit="SendChDevicePut()">
+            <p>ID: <input type="text" id="id" name="id" ng-model="device.id" required /></p>
+            <p>Name: <input type="text" id="name" name="name" ng-model="device.name" required /></p>
+            <p>Description: <input type="text" id="description" name="description" ng-model="device.description" /></p>
+            <p>Location: <input type="text" id="location" name="location" ng-model="device.location" required /></p>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+        </div>
+        <h3>Delete Checkin Device</h3>
+        <div ng-controller="chDeviceDeleteControl">
+        <p>Delete Check-in Device: <input type="number" name="id" ng-model="device.id" required/></p>
+        <button ng-click="SendChDeviceDel()">Submit</button>
+        </div>
+      </div>
+
+      </div>
 		<div id="menu3" class="tab-pane fade">
-		  <h3>Time Card</h3>
-		  <p>Eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
-		</div>
+		  <h3>Subgroups</h3>
+      <div ng-controller="SubgroupControl">
+      <h2> Subgroup List</h2>
+      <table class="table table-condensed">
+        <thead>
+          <tr>
+            <th>Subgroup Name</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="x in subgroups">
+            <td>{{x.name}}</td>
+            <td>{{x.id}}</td>
+            </tr>
+        </tbody>
+      </table>
+      </div> 
+      <h3>Add Subgroup</h3>
+      <div ng-controller="SubgroupPostControl" >
+        <form name="AddSubgroupForm" ng-submit="SendSubgroupPost()">
+          <p>Name: <input type="text" id="id" name="id" ng-model="subgroup.id" required /></p>
+          <p>Name: <input type="text" id="name" name="name" ng-model="subgroup.name" required /></p>
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+      </div>
+      <h3>Update Subgroup</h3>
+      <div>
+      <form name="UpdateSubgroupForm" ng-submit="UpdateSubgroup()">
+          <p>ID: <input type="text" id="id" name="id" ng-model="subgroup.id" required /></p>
+          <p>Name: <input type="text" id="name" name="name" ng-model="subgroup.name" required /></p>
+          <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+      </div>
+    
+      <h3>Delete Subgroup</h3>
+      <div ng-controller="SubgroupDeleteControl">
+      <p>Delete Check-in Device: <input type="number" name="id" ng-model="subgroup.id" required/></p>
+      <button ng-click="SendSubgroupDel()">Submit</button>
+      </div>
+    </div>
 		<div id="menu4" class="tab-pane fade">
-		  <h3>Sub Groups</h3>
+		  <h3>Member Timecard</h3>
+      <div class="container" ng-controller="TimecardControl">
+        <h2>Table</h2>
+        <table class="table table-condensed">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Checkin Device</th>
+              <th>In</th>
+              <th>Out</th>
+              <th>Total Time</th>
+            </tr>
+          </thead>
+          <tbody>
+          <tr ng-repeat="x in TimecardResponse">
+              <td rowspan="10">{{x.name}}</td>
+              <td rowspan="">{{x.checkInDevice}}</td>
+              <td rowspan="">{{x.totalTime}}</td> 
+              <td >{{x.checkIn}}</td>
+              <td>{{x.checkOut}}</td>
+              
+            </tr>
+          </tbody>
+        </table>
+</div>
 		</div>
 		<div id="menu5" class="tab-pane fade">
 		  <h3>Check in</h3>
+      <div ng-controller="MemberCheckinControl" >
+        <form name="CheckinMemberForm" ng-submit="SendCheckin()">
+          <p>User: <input type="text" id="user" name="User ID" ng-model="user.id" required /></p>
+          <p>Device: <input type="text" id="user" name="User ID" ng-model="device.id" required /></p>
+          <button type="submit" class="btn btn-primary">Sign In</button>
+        </form>
+      </div>
 		</div>
+    <div id="menu6" class="tab-pane fade">
+    <h3>Check Out</h3>
+    <div ng-controller="MemberCheckoutControl" >
+      <form name="CheckoutMemberForm" ng-submit="SendCheckout()">
+        <p>User: <input type="text" id="user" name="User ID" ng-model="user.id" required /></p>
+        <p>Device: <input type="text" id="user" name="User ID" ng-model="device.id" required /></p>
+        <button type="submit" class="btn btn-primary">Sign Out</button>
+      </form>
+    </div>
+    </div>
 	  </div>
 	</div>
-  
-</div>
-
-        </div>
-  
+ <!-- -->
 <div class="container">
 	<img class="logo" src="Images/GrassCar.jpg" width="350" height="300">
-</div>
-
-<div class="container" ng-controller="MemberControl">
-  <h2>Table</h2>
-  <table class="table table-condensed">
-    <thead>
-      <tr>
-        <th>#</th>
-        <th>UserName</th>
-		<th>BluetoothDeviceID</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr ng-repeat="x in members">
-        <td>{{x.id}}</td>
-        <td>{{x.name}}</td>
-		<td>{{x.hasKeys ? 'True':'False'}}</td>
-      </tr>
-    </tbody>
-  </table>
-</div>
-
-<!--[if lt IE 7]>
-      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-  <![endif]>
-  <div ng-controller="chDeviceControl">
-  <p>{{chdevice}}</p>
-  </div>
-  <div ng-controller="SubgroupControl">
-  <p>{{subgroups}}</p>
-  </div>
-<!--
-  <div ng-controller="MemberControl">
-    <div  ng-repeat="x in members"> 
-    <ul>
-      <li> Name: {{x.name}}
-      <li> id: {{x.id}}
-      <li> Has Keys: {{x.hasKeys ? 'True':'False'}}
-      </li>
-      </li>
-      </li>
-    </ul>
-     </div>
-  </div> -->
-  
-<div class="container">  
-  <div ng-controller="MemberPostControl" >
-    <form name="AddMemberForm" ng-submit="SendPost()">
-      <p>Name: <input type="text" id="name" name="name" ng-model="user.name" required /></p>
-      <p>Has Keys: <input type="text" id="keys" name="keys" ng-model="user.hasKeys" required /></p>
-      <p>Is Active: <input type="text" id="active" name="active" ng-model="user.active" required /></p>
-      <button type="submit" class="btn btn-primary">Submit</button>
-    </form>
-  <div ng-controller="MemberDeleteControl">
-  <p>Delete Member: <input type="number" name="id" ng-model="id" required/></p>
-  <button ng-click="SendDel()">Submit</button>
-  </div>
 </div>
 
 	<div class="container">
       <p><p>
     </div>
-
         <footer class="footer">
           <div class="footer-inner">
               <div class="row">
@@ -170,7 +282,7 @@
 				  <img class="logo" src="Images/Logo_White.png" width="150" height="100">
 				  <style>
 					footer{
-					background-color: green;
+					background-color: #7cbd74;
 					}
 				  </style>
 				</div>
