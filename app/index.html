@@ -47,10 +47,43 @@
   <link rel="stylesheet" src="//normalize-css.googlecode.com/svn/trunk/normalize.css" />
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  <style>
+    div.absolute {
+	position: absolute;
+	top: 0px;
+	right: 0;
+	width: 200px;
+	height: 70px;
+	}
+	
+	div.img {
+    margin: 5px;
+    border: 1px solid #ccc;
+    float: left;
+    width: 180px;
+	}	
 
+	div.img:hover {
+    border: 1px solid #777;
+	}
+
+	div.img img {
+    width: 100%;
+    height: auto;
+	}
+
+	div.desc {
+    padding: 15px;
+    text-align: center;
+	}
+	
+	</style>
 </head>
 <body >
-
+	  <div class="absolute">
+	  <iframe width="200" height="70" src="http://shoptracker-api.azurewebsites.net/checkin-devices/1/isopenwidget" 
+	  frameborder="0"></iframe>
+	  </div>
 	<div class="container">
 	  <h2>Miner Racing</h2>
 	  <ul class="nav nav-pills">
@@ -268,10 +301,52 @@
 	  </div>
 	</div>
  <!-- -->
-<div class="container">
-	<img class="logo" src="Images/GrassCar.jpg" width="350" height="300">
+ <div class="container">
+ 
+ <div class="img">
+  <a target="_blank" href="Images/DesignTeam.jpg">
+    <img src="Images/DesignTeam.jpg" alt="Crafting the Ideas" width="300" height="200">
+  </a>
+  <div class="desc">The Design Team Hard at Work</div>
+</div>
+ 
+ <div class="img">
+  <a target="_blank" href="Images/UnderHood.jpg">
+    <img src="Images/UnderHood.jpg" alt="A Look at the Car's Engine" width="300" height="200">
+  </a>
+  <div class="desc">A Look Under the Hood</div>
 </div>
 
+<div class="img">
+  <a target="_blank" href="Images/FinalProduct.jpg">
+    <img src="Images/FinalProduct.jpg" alt="The Finished Car" width="300" height="200">
+  </a>
+  <div class="desc">The Car in All its Glory</div>
+</div>
+
+<div class="img">
+  <a target="_blank" href="Images/GroupShot.jpg">
+    <img src="Images/GroupShot.jpg" alt="The Team" width="300" height="200">
+  </a>
+  <div class="desc">The Winning Team</div>
+</div>
+
+<div class="img">
+  <a target="_blank" href="Images/SpeedCar.jpg">
+    <img src="Images/SpeedCar.jpg" alt="The Car in Action" width="300" height="200">
+  </a>
+  <div class="desc">The Car Tears Through the Turns</div>
+</div>
+
+<div class="img">
+  <a target="_blank" href="Images/PitStop.jpg">
+    <img src="Images/PitStop.jpg" alt="Final Checks" width="300" height="200">
+  </a>
+  <div class="desc">The Pit Crew Makes the Final Checks</div>
+</div>
+
+</div>
+	
 	<div class="container">
       <p><p>
     </div>
@@ -291,6 +366,6 @@
         </footer>
       </div>
     </div>
-	
+
 </body>
 </html>
