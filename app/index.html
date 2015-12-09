@@ -185,6 +185,7 @@
         <thead>
           <tr>
             <th>Subgroup Name</th>
+            <th>Subgroup ID</th>
           </tr>
         </thead>
         <tbody>
@@ -214,35 +215,51 @@
     
       <h3>Delete Subgroup</h3>
       <div ng-controller="SubgroupDeleteControl">
-      <p>Delete Check-in Device: <input type="number" name="id" ng-model="subgroup.id" required/></p>
+      <p>Delete Subgroup: <input type="number" name="id" ng-model="subgroup.id" required/></p>
       <button ng-click="SendSubgroupDel()">Submit</button>
       </div>
     </div>
 		<div id="menu4" class="tab-pane fade">
+    
 		  <h3>Member Timecard</h3>
       <div class="container" ng-controller="TimecardControl">
-        <h2>Table</h2>
+      <form ng-submit="getTimecard()">
+        <input type="text" id="id" name="userID"  ng-model="user.id" />
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
         <table class="table table-condensed">
           <thead>
             <tr>
               <th>Name</th>
               <th>Checkin Device</th>
+              <th>Total Time</th>
               <th>In</th>
               <th>Out</th>
-              <th>Total Time</th>
+              
             </tr>
           </thead>
           <tbody>
-          <tr ng-repeat="x in TimecardResponse">
-              <td rowspan="10">{{x.name}}</td>
-              <td rowspan="">{{x.checkInDevice}}</td>
-              <td rowspan="">{{x.totalTime}}</td> 
-              <td >{{x.checkIn}}</td>
-              <td>{{x.checkOut}}</td>
-              
+            <tr>
+            <td>{{TimecardResponse.name}}</td>
+            <td>{{TimecardResponse.times[0].checkInDevice}}</td>
+            <td>{{TimecardResponse.times[0].totalTime}}</td>
+            <td>
+                <table>
+                <tr ng-repeat="y in TimecardResponse.times[0].visits track by $index">
+                <td>CheckIn: {{y.checkIn}}</td>
+                </tr>
+                </table>
+                </td>
+                <td>
+                <table>
+                <tr ng-repeat="z in TimecardResponse.times[0].visits track by $index">
+                <td>CheckOut: {{z.checkOut}}</td>
+                </tr>
+                </table>
+                </td>
             </tr>
           </tbody>
-        </table>
+        </table> -->
 </div>
 		</div>
 		<div id="menu5" class="tab-pane fade">

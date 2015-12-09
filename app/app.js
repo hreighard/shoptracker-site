@@ -381,7 +381,7 @@ angular.module('shopTracker', [])
 
 .controller('TimecardControl', function($scope, $http){
   $scope.user ={};
-  //$scope.getTimecard = function(){
+  $scope.getTimecard = function(){
   $http({
     method : 'GET',
     url : memberurl + $scope.user.id + '/timecard'
@@ -391,5 +391,5 @@ angular.module('shopTracker', [])
 	}, function(resp){
 		console.log(resp);
 	})
-  //}
+  }
 })
