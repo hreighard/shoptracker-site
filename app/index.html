@@ -47,15 +47,35 @@
   <link rel="stylesheet" src="//normalize-css.googlecode.com/svn/trunk/normalize.css" />
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-  <style>
-    div.absolute {
+  <style type="text/css">
+  html,
+  body{
+		margin:0;
+		padding:0;
+		height:100%;
+	}
+  #container{
+    min-height:100%;
+    position:relative;
+    }
+  div.absolute {
 	position: absolute;
 	top: 0px;
 	right: 0;
 	width: 200px;
 	height: 70px;
 	}
-	
+	#body{
+    padding-bottom:100px;
+    }
+  
+  #footer{
+    background: green;
+    position: absolute;
+    bottom: 0px;
+    height:100px;
+    width:100%;
+    }
 	div.img {
     margin: 5px;
     border: 1px solid #ccc;
@@ -76,15 +96,20 @@
     padding: 15px;
     text-align: center;
 	}
+  
 	
 	</style>
 </head>
 <body >
+<div id="container">
+  <div id="header">
+  </div>
+  <div id="body">
 	  <div class="absolute">
 	  <iframe width="200" height="70" src="http://shoptracker-api.azurewebsites.net/checkin-devices/1/isopenwidget" 
 	  frameborder="0"></iframe>
 	  </div>
-	<div class="container">
+	
 	  <h2>Miner Racing</h2>
 	  <ul class="nav nav-pills">
 		<li class="active"><a data-toggle="pill" href="#home">Home</a></li>
@@ -92,6 +117,7 @@
 		<li><a data-toggle="pill" href="#menu2">Devices</a></li>
 		<li><a data-toggle="pill" href="#menu3">Subgroups</a></li>
 		<li><a data-toggle="pill" href="#menu4">Timecard</a></li>
+    <li><a data-toggle="pill" href="#menu7">Attendence</a></li>
 		<li><a data-toggle="pill" href="#menu5">Check In</a></li>
     <li><a data-toggle="pill" href="#menu6">Check Out</a></li>
 	  </ul>
@@ -106,6 +132,51 @@
             <p>
               We are the Formula Electric design team at <a href="http://mst.edu">Missouri University of Science and Technology</a> in Rolla, Missouri. Participating in the Formula SAE Electric series of racing, we design, build, and race a scale formula-style car each year. While Formula SAE has been around for a long time, the electric series has only recently come to the U.S. In 2012 a group of students got together to form an entirely new team to race in the new series, and Formula Electric was born.
             </p>
+            <div class="container">
+ 
+ <div class="img">
+  <a target="_blank" href="Images/DesignTeam.jpg">
+    <img src="Images/DesignTeam.jpg" alt="Crafting the Ideas" width="300" height="200">
+  </a>
+  <div class="desc">The Design Team Hard at Work</div>
+</div>
+ 
+ <div class="img">
+  <a target="_blank" href="Images/UnderHood.jpg">
+    <img src="Images/UnderHood.jpg" alt="A Look at the Car's Engine" width="300" height="200">
+  </a>
+  <div class="desc">A Look Under the Hood</div>
+</div>
+
+<div class="img">
+  <a target="_blank" href="Images/FinalProduct.jpg">
+    <img src="Images/FinalProduct.jpg" alt="The Finished Car" width="300" height="200">
+  </a>
+  <div class="desc">The Car in All its Glory</div>
+</div>
+
+<div class="img">
+  <a target="_blank" href="Images/GroupShot.jpg">
+    <img src="Images/GroupShot.jpg" alt="The Team" width="300" height="200">
+  </a>
+  <div class="desc">The Winning Team</div>
+</div>
+
+<div class="img">
+  <a target="_blank" href="Images/SpeedCar.jpg">
+    <img src="Images/SpeedCar.jpg" alt="The Car in Action" width="300" height="200">
+  </a>
+  <div class="desc">The Car Tears Through the Turns</div>
+</div>
+
+<div class="img">
+  <a target="_blank" href="Images/PitStop.jpg">
+    <img src="Images/PitStop.jpg" alt="Final Checks" width="300" height="200">
+  </a>
+  <div class="desc">The Pit Crew Makes the Final Checks</div>
+</div>
+
+</div>
 		</div>                                                     
 		<div id="menu1" class="tab-pane fade">
 		  <h3>Members</h3>
@@ -165,7 +236,6 @@
 		  <h3>Checkin Devices</h3>
       <div class="container"> 
         <div ng-controller="chDeviceControl">
-        <h2>Checkin Devices</h2>
         <table class="table table-condensed">
           <thead>
             <tr>
@@ -213,7 +283,6 @@
 		<div id="menu3" class="tab-pane fade">
 		  <h3>Subgroups</h3>
       <div ng-controller="SubgroupControl">
-      <h2> Subgroup List</h2>
       <table class="table table-condensed">
         <thead>
           <tr>
@@ -315,74 +384,34 @@
       </form>
     </div>
     </div>
-	  </div>
+	  <div id="menu7" class="tab-pane fade">
+    <div class="container" ng-controller="AttendenceControl">
+        <form name="Attendance" ng-submit="getAttendence()">
+        <p>Device <input type="text" id="user" name="User ID" ng-model="device.id" required /></p>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+    <table class="table table-condensed">
+      <thead>
+        <tr>
+          <th>Name</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="x in postResponse">
+          <td>{{x.name}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+    </div>
 	</div>
  <!-- -->
- <div class="container">
- 
- <div class="img">
-  <a target="_blank" href="Images/DesignTeam.jpg">
-    <img src="Images/DesignTeam.jpg" alt="Crafting the Ideas" width="300" height="200">
-  </a>
-  <div class="desc">The Design Team Hard at Work</div>
+ </div>
+  <div id="footer">
+        
+    <img class="logo" src="Images/Logo_White.png" width="150" height="100">
+  </div>
 </div>
- 
- <div class="img">
-  <a target="_blank" href="Images/UnderHood.jpg">
-    <img src="Images/UnderHood.jpg" alt="A Look at the Car's Engine" width="300" height="200">
-  </a>
-  <div class="desc">A Look Under the Hood</div>
-</div>
-
-<div class="img">
-  <a target="_blank" href="Images/FinalProduct.jpg">
-    <img src="Images/FinalProduct.jpg" alt="The Finished Car" width="300" height="200">
-  </a>
-  <div class="desc">The Car in All its Glory</div>
-</div>
-
-<div class="img">
-  <a target="_blank" href="Images/GroupShot.jpg">
-    <img src="Images/GroupShot.jpg" alt="The Team" width="300" height="200">
-  </a>
-  <div class="desc">The Winning Team</div>
-</div>
-
-<div class="img">
-  <a target="_blank" href="Images/SpeedCar.jpg">
-    <img src="Images/SpeedCar.jpg" alt="The Car in Action" width="300" height="200">
-  </a>
-  <div class="desc">The Car Tears Through the Turns</div>
-</div>
-
-<div class="img">
-  <a target="_blank" href="Images/PitStop.jpg">
-    <img src="Images/PitStop.jpg" alt="Final Checks" width="300" height="200">
-  </a>
-  <div class="desc">The Pit Crew Makes the Final Checks</div>
-</div>
-
-</div>
-	
-	<div class="container">
-      <p><p>
-    </div>
-        <footer class="footer">
-          <div class="footer-inner">
-              <div class="row">
-                <div class="span2">
-				  <img class="logo" src="Images/Logo_White.png" width="150" height="100">
-				  <style>
-					footer{
-					background-color: #7cbd74;
-					}
-				  </style>
-				</div>
-            </div>
-          </div>
-        </footer>
-      </div>
-    </div>
 
 </body>
 </html>

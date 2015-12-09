@@ -364,9 +364,9 @@ angular.module('shopTracker', [])
 })
 
 //returns a list of all members that are checked in at the specified checkin device
-.controller('AttendanceControl', function($scope, $http){
+.controller('AttendenceControl', function($scope, $http){
   $scope.device ={};
-  $scope.getAttendance = function(){
+  $scope.getAttendence = function(){
   $http({
     method : 'GET',
     url : chDurl + $scope.device.id + '/whoisthere'
